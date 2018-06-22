@@ -92,6 +92,9 @@ echo " " && echo ">>>>>>> | End of process. Succesfull installation | <<<<<<<"
 #Node
 #- https://github.com/nodesource/distributions#installation-instructions
 #
+#Docker
+#- https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
+#
 #MySQL
 #- https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-ubuntu-16-04
 #- https://websiteforstudents.com/install-mysql-latest-versions-on-ubuntu-16-04-lts-server/
