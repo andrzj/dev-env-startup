@@ -1,26 +1,32 @@
 #!/bin/sh
 
-echo ">>>>>>> | Atualizando pacotes | <<<<<<<"
+echo ">>>>>>> | Updating packages | <<<<<<<"
 #do-release-upgrade
 sudo apt update -y && sudo apt upgrade -y && sudo apt full-upgrade -y
 
-echo " " && echo ">>>>>>> | Instalando Git | <<<<<<<"
+echo " " && echo ">>>>>>> | Installing Git | <<<<<<<"
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt install git -y
 
-echo " " && echo ">>>>>>> | Instalando Node | <<<<<<<"
+echo " " && echo ">>>>>>> | Installing Node | <<<<<<<"
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt install -y nodejs
+sudo npm i -g npm
 sudo npm install -g nodemon
 
-echo " " && echo ">>>>>>> | Instalando Mongo | <<<<<<<"
+echo " " && echo ">>>>>>> | Installing Yarn | <<<<<<<"
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt install -y yarn
+
+echo " " && echo ">>>>>>> | Installing Mongo | <<<<<<<"
 sudo apt install mongodb -y && sudo apt remove mongodb -y && sudo apt autoremove -y
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
 sudo apt update && sudo apt install mongodb-org -y
 #sudo service mongodb start
 
-echo " " && echo ">>>>>>> | Instalando MySQL | <<<<<<<"
+echo " " && echo ">>>>>>> | Installing MySQL | <<<<<<<"
 curl -OL https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
 sudo dpkg -i mysql-apt-config*
 sudo apt update -y
@@ -35,7 +41,7 @@ sudo apt install mysql-server -y
 #sudo service mysql start
 #mysqladmin -u root -p version
 
-echo " " && echo ">>>>>>> | Instalando Docker | <<<<<<<"
+echo " " && echo ">>>>>>> | Installing Docker | <<<<<<<"
 sudo apt remove -y docker docker-engine docker.io
 # Environment variables you need to set so you don't have to edit the script below.
 export DOCKER_CHANNEL=edge
@@ -67,10 +73,10 @@ sudo usermod -aG docker $USER
 sudo curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose &&
 sudo chmod +x /usr/local/bin/docker-compose
 
-echo " " && echo ">>>>>>> | Limpando pacotes não necessários | <<<<<<<"
+echo " " && echo ">>>>>>> | Cleaning unnecessary packages | <<<<<<<"
 sudo apt autoremove -y
 
-echo " " && echo ">>>>>>> | Fim do processo. Pacotes instalados | <<<<<<<"
+echo " " && echo ">>>>>>> | End of process. Succesfull installation | <<<<<<<"
 
 
 #Mongo
