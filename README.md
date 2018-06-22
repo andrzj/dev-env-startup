@@ -12,6 +12,7 @@ The script will install to you:
 
 - Git
 - Node + NPM
+- Yarn
 - Mongo
 - MySQL
 - Docker
